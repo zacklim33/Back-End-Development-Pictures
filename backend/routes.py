@@ -30,14 +30,6 @@ def count():
     return {"message": "Internal server error"}, 500
 
 
-@app.route("/count2")
-def count2():
-    """return length of data"""
-    if data:
-        return jsonify(data[0]["pic_url"]), 200
-
-    return {"message": "Internal server error"}, 500
-
 ######################################################################
 # GET ALL PICTURES
 ######################################################################
@@ -112,12 +104,10 @@ def update_picture(id):
         return ({"message": "INPUT JSON is problematic"}, 404)
 
     # to loop through and locate where inputData matches data array
-    i=0
-    for picture in data:
+    for i, picture in enumerate(data):
         if(picture["id"] == id):
             data[i]=inputData
             return ({"message": f"picture {id} was updated"}, 200)
-        i+=1
     
     return ({"message": "picture not found"}, 404)
 
