@@ -57,7 +57,7 @@ def test_post_picture_duplicate(picture, client):
     res = client.post("/picture", data=json.dumps(picture),
                       content_type="application/json")
     assert res.status_code == 302
-    assert res.json['Message'] == f"picture with id {picture['id']} already present"
+    assert res.json['message'] == f"picture with id {picture['id']} already present"
 
 def test_update_picture_by_id(client, picture):
     id = '2'
